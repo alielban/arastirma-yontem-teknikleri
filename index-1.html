@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Türkiye’de Asgari Ücret ve Genç İşsizliği - Muhammed Ali Elban</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== THEME: MIDNIGHT INK & GOLD ==================== */
+        :root {
+            --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+            --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+            --bg-canvas: #03050b;
+            --slide-bg: #0a1020;
+            --slide-bg-2: #101a38;
+            --card-surface: #111a33;
+            --card-surface-hover: #17234a;
+            --border-dim: #222f58;
+            --border-bright: #3a4c85;
+            --text-heading: #f5f7fc;
+            --text-body: #c5cde2;
+            --text-muted: #8f9bbd;
+
+            --primary: #f5c056;
+            --on-primary: #1a1305;
+            --primary-soft: rgba(245, 192, 86, 0.14);
+
+            --accent-royal: #6ea8ff;
+            --accent-royal-bg: rgba(110, 168, 255, 0.14);
+            --accent-emerald: #3ddbb0;
+            --accent-emerald-bg: rgba(61, 219, 176, 0.14);
+            --accent-gold: #f5c056;
+            --accent-gold-bg: rgba(245, 192, 86, 0.14);
+            --accent-coral: #ff7a8c;
+            --accent-coral-bg: rgba(255, 122, 140, 0.14);
+            --accent-indigo: #a99bff;
+            --accent-indigo-bg: rgba(169, 155, 255, 0.15);
+
+            --glow-1: rgba(110, 168, 255, 0.16);
+            --glow-2: rgba(245, 192, 86, 0.10);
+            --hl-1: #f5c056;
+            --hl-2: #ffe2a3;
+            --hl-3: #8fbcff;
+            --shadow-card: 0 10px 26px -16px rgba(0, 0, 0, 0.75);
+            --bar-fill: rgba(245, 192, 86, 0.30);
+        }
+
+        body.theme-light {
+            --bg-canvas: #e8e3d6;
+            --slide-bg: #fdfbf6;
+            --slide-bg-2: #f5efe2;
+            --card-surface: #ffffff;
+            --card-surface-hover: #fbf6ea;
+            --border-dim: #e3dac6;
+            --border-bright: #cbbd9a;
+            --text-heading: #131a2f;
+            --text-body: #394158;
+            --text-muted: #6b738f;
+
+            --primary: #b36b00;
+            --on-primary: #ffffff;
+            --primary-soft: rgba(179, 107, 0, 0.10);
+
+            --accent-royal: #1f56c4;
+            --accent-royal-bg: #e8f0ff;
+            --accent-emerald: #0b7f62;
+            --accent-emerald-bg: #e3f6ee;
+            --accent-gold: #9a5b05;
+            --accent-gold-bg: #fdf1d6;
+            --accent-coral: #c0283f;
+            --accent-coral-bg: #fdecee;
+            --accent-indigo: #5a46d6;
+            --accent-indigo-bg: #eeebff;
+
+            --glow-1: rgba(31, 86, 196, 0.08);
+            --glow-2: rgba(179, 107, 0, 0.09);
+            --hl-1: #b36b00;
+            --hl-2: #d9921c;
+            --hl-3: #1f56c4;
+            --shadow-card: 0 10px 22px -16px rgba(60, 40, 0, 0.35);
+            --bar-fill: rgba(179, 107, 0, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button { font-family: inherit; }
+
+        body {
+            font-family: var(--font-body);
+            background:
+                radial-gradient(1100px 560px at 12% -10%, var(--glow-1), transparent 62%),
+                radial-gradient(900px 520px at 100% 112%, var(--glow-2), transparent 60%),
+                var(--bg-canvas);
+            color: var(--text-body);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 16:9 Frame on Desktop, 100% Fluid on Mobile */
+        .deck-shell {
+            position: relative;
+            width: min(1180px, calc(100vw - 28px));
+            height: min(680px, calc(100vh - 28px));
+            background: linear-gradient(160deg, var(--slide-bg-2) 0%, var(--slide-bg) 58%);
+            border-radius: 18px;
+            border: 1px solid var(--border-dim);
+            box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* Ambient glows (decorative only) */
+        .deck-shell::before,
+        .deck-shell::after {
+            content: "";
+            position: absolute;
+            width: 560px;
+            height: 560px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .deck-shell::before {
+            top: -260px;
+            right: -180px;
+            background: radial-gradient(circle, var(--glow-1), transparent 66%);
+        }
+        .deck-shell::after {
+            bottom: -300px;
+            left: -200px;
+            background: radial-gradient(circle, var(--glow-2), transparent 66%);
+        }
+
+        .progress-line-track,
+        .slide,
+        .deck-controls,
+        .speaker-notes-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Top Progress */
+        .progress-line-track {
+            width: 100%;
+            height: 3px;
+            background: var(--border-dim);
+            flex-shrink: 0;
+        }
+
+        .progress-line-fill {
+            height: 100%;
+            width: 5%;
+            background: linear-gradient(90deg, var(--primary), var(--accent-emerald));
+            box-shadow: 0 0 14px var(--primary);
+            transition: width 0.45s cubic-bezier(0.22, 0.8, 0.3, 1);
+        }
+
+        /* Slides */
+        .slide {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            padding: 30px 44px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: fadeIn 0.35s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Nav Bar */
+        .slide-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 14px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-dim);
+            flex-shrink: 0;
+        }
+
+        .slide-nav-bar h2 {
+            font-family: var(--font-display);
+            font-size: 23px;
+            color: var(--text-heading);
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slide-nav-bar h2::before {
+            content: "";
+            width: 4px;
+            height: 24px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--accent-royal));
+            flex-shrink: 0;
+        }
+
+        .badge-pill {
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border: 1px solid;
+            white-space: nowrap;
+        }
+
+        .badge-royal { background: var(--accent-royal-bg); color: var(--accent-royal); border-color: var(--accent-royal); }
+        .badge-emerald { background: var(--accent-emerald-bg); color: var(--accent-emerald); border-color: var(--accent-emerald); }
+        .badge-gold { background: var(--accent-gold-bg); color: var(--accent-gold); border-color: var(--accent-gold); }
+        .badge-indigo { background: var(--accent-indigo-bg); color: var(--accent-indigo); border-color: var(--accent-indigo); }
+        .badge-coral { background: var(--accent-coral-bg); color: var(--accent-coral); border-color: var(--accent-coral); }
+
+        /* Grids & Cards */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+        .panel-card {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 55%),
+                var(--card-surface);
+            border: 1px solid var(--border-dim);
+            border-radius: 12px;
+            padding: 16px 18px;
+            position: relative;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .panel-card:hover {
+            border-color: var(--border-bright);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 55%),
+                var(--card-surface-hover);
+            transform: translateY(-2px);
+        }
+
+        .border-royal { border-left: 4px solid var(--accent-royal); }
+        .border-emerald { border-left: 4px solid var(--accent-emerald); }
+        .border-gold { border-left: 4px solid var(--accent-gold); }
+        .border-coral { border-left: 4px solid var(--accent-coral); }
+        .border-indigo { border-left: 4px solid var(--accent-indigo); }
+
+        .panel-card h3 {
+            font-size: 14.5px;
+            color: var(--text-heading);
+            font-weight: 700;
+            margin-bottom: 9px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .panel-card p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-body);
+        }
+
+        ul.cyber-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.cyber-bullets li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-body);
+        }
+
+        ul.cyber-bullets li::before {
+            content: "◆";
+            position: absolute;
+            left: 2px;
+            top: 6px;
+            color: var(--primary);
+            font-size: 8px;
+        }
+
+        ul.cyber-bullets li strong { color: var(--text-heading); }
+
+        /* Hero Typography */
+        .hero-heading {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--text-heading);
+            line-height: 1.16;
+            margin-bottom: 14px;
+            letter-spacing: -0.8px;
+        }
+
+        .hero-heading .hero-highlight {
+            font-style: italic;
+            color: var(--primary);
+            background: linear-gradient(90deg, var(--hl-1), var(--hl-2) 45%, var(--hl-3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc { font-size: 15.5px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.55; max-width: 860px; }
+
+        /* Cover slide accents */
+        .slide-cover { padding: 40px 56px; }
+        .slide-cover::after {
+            content: "%";
+            position: absolute;
+            right: 44px;
+            top: 18px;
+            font-family: var(--font-display);
+            font-size: 300px;
+            line-height: 1;
+            color: var(--primary);
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .author-box-prominent {
+            background:
+                linear-gradient(120deg, var(--primary-soft), rgba(255, 255, 255, 0) 55%),
+                var(--card-surface);
+            border: 1px solid var(--border-dim);
+            border-radius: 14px;
+            padding: 16px 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .author-avatar-name { display: flex; align-items: center; gap: 14px; }
+        .author-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), #e08a2b);
+            color: var(--on-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 { font-size: 17px; font-weight: 800; color: var(--text-heading); }
+        .author-info p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+        /* Interactive Tabs */
+        .tab-controls { display: flex; gap: 8px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .tab-btn {
+            background: var(--card-surface);
+            border: 1px solid var(--border-dim);
+            color: var(--text-muted);
+            padding: 7px 16px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .tab-btn:hover { border-color: var(--primary); color: var(--text-heading); }
+        .tab-btn.active { background: var(--primary); border-color: var(--primary); color: var(--on-primary); font-weight: 700; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+        /* Interactive Student Poll Widget */
+        .poll-card {
+            background:
+                linear-gradient(135deg, var(--primary-soft), rgba(255, 255, 255, 0) 60%),
+                var(--card-surface);
+            border: 1px solid var(--primary);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .poll-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .poll-option {
+            background: var(--slide-bg);
+            border: 1px solid var(--border-dim);
+            border-radius: 10px;
+            padding: 11px 14px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .poll-option:hover {
+            border-color: var(--primary);
+            transform: translateX(3px);
+        }
+
+        .poll-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, var(--bar-fill), rgba(255, 255, 255, 0));
+            width: 0%;
+            transition: width 0.6s ease;
+            z-index: 1;
+        }
+
+        .poll-text-wrap {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-heading);
+        }
+
+        /* Filterable Table */
+        .table-responsive { width: 100%; overflow-x: auto; }
+        .filter-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; overflow-x: auto; }
+        .filter-btn {
+            background: var(--card-surface);
+            border: 1px solid var(--border-dim);
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+        .filter-btn:hover { border-color: var(--primary); color: var(--text-heading); }
+        .filter-btn.active { background: var(--primary); border-color: var(--primary); color: var(--on-primary); font-weight: 700; }
+
+        table.pro-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 12px;
+            border: 1px solid var(--border-dim);
+            border-radius: 12px;
+            overflow: hidden;
+            min-width: 600px;
+            background: var(--card-surface);
+        }
+
+        table.pro-table th {
+            background: var(--slide-bg-2);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-bright);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-size: 10.5px;
+        }
+
+        table.pro-table td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--border-dim);
+            color: var(--text-body);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        table.pro-table tbody tr:last-child td { border-bottom: none; }
+        table.pro-table tbody tr:hover td { background: var(--card-surface-hover); }
+        table.pro-table td strong { color: var(--text-heading); }
+
+        /* Row accent: marks which finding group a study belongs to */
+        table.pro-table tr.row-neoclassic td:first-child { box-shadow: inset 3px 0 0 var(--accent-coral); }
+        table.pro-table tr.row-neutral td:first-child { box-shadow: inset 3px 0 0 var(--accent-royal); }
+        table.pro-table tr.row-positive td:first-child { box-shadow: inset 3px 0 0 var(--accent-emerald); }
+
+        .tag-chip {
+            background: var(--accent-indigo-bg);
+            color: var(--accent-indigo);
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 10.5px;
+            font-weight: 600;
+            display: inline-block;
+            border: 1px solid var(--accent-indigo);
+            white-space: nowrap;
+        }
+
+        /* Flow Diagram */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .flow-box {
+            flex: 1;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 55%),
+                var(--card-surface);
+            border: 1px solid var(--border-dim);
+            border-radius: 12px;
+            padding: 13px 14px;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .flow-box h4 { font-size: 13px; color: var(--text-heading); margin-bottom: 4px; }
+        .flow-box p { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+        .flow-arrow { color: var(--primary); font-size: 18px; font-weight: bold; text-shadow: 0 0 10px var(--primary); }
+
+        /* Conclusion slides */
+        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
+        .stat-tile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 55%),
+                var(--card-surface);
+            border: 1px solid var(--border-dim);
+            border-radius: 14px;
+            padding: 14px 18px;
+            box-shadow: var(--shadow-card);
+        }
+        .stat-num { font-family: var(--font-display); font-size: 46px; font-weight: 600; line-height: 1; min-width: 40px; text-align: center; }
+        .stat-coral .stat-num { color: var(--accent-coral); }
+        .stat-emerald .stat-num { color: var(--accent-emerald); }
+        .stat-royal .stat-num { color: var(--accent-royal); }
+        .stat-label { font-size: 12.5px; line-height: 1.45; color: var(--text-body); }
+        .stat-label strong { display: block; color: var(--text-heading); font-size: 13px; margin-bottom: 2px; }
+        .caption-note { font-size: 11.5px; line-height: 1.5; color: var(--text-muted); margin-top: 12px; }
+        .lead-text { font-size: 13.5px !important; line-height: 1.7 !important; }
+        .lead-text + .lead-text { margin-top: 8px; }
+
+        /* References (APA 7: alphabetical, hanging indent) */
+        ul.refs-list { list-style: none; padding: 0; margin: 0; }
+        ul.refs-list li {
+            font-size: 11.5px;
+            line-height: 1.5;
+            color: var(--text-body);
+            padding: 0 0 8px 22px;
+            margin-bottom: 8px;
+            text-indent: -14px;
+            border-bottom: 1px dashed var(--border-dim);
+        }
+        ul.refs-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        ul.refs-list li em { color: var(--text-heading); }
+        ul.refs-list a { color: var(--accent-royal); text-decoration: none; word-break: break-all; }
+        ul.refs-list a:hover { text-decoration: underline; }
+        .ref-group-label {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Bottom Controls */
+        .deck-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--card-surface);
+            border-top: 1px solid var(--border-dim);
+            flex-shrink: 0;
+            gap: 8px;
+        }
+
+        .btn-ctrl {
+            background: var(--slide-bg);
+            color: var(--text-body);
+            border: 1px solid var(--border-dim);
+            padding: 7px 13px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+
+        .btn-ctrl:hover { border-color: var(--primary); color: var(--text-heading); }
+        .btn-ctrl-primary { background: var(--primary); color: var(--on-primary); border: 1px solid var(--primary); font-weight: 700; }
+        .btn-ctrl-primary:hover { color: var(--on-primary); filter: brightness(1.08); }
+
+        .slide-counter-badge {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-dim);
+            background: var(--slide-bg);
+            white-space: nowrap;
+        }
+
+        /* Speaker Notes */
+        .speaker-notes-box {
+            display: none;
+            background: var(--card-surface);
+            border-top: 1px solid var(--accent-gold);
+            padding: 10px 24px;
+            font-size: 12px;
+            line-height: 1.55;
+            color: var(--accent-gold);
+            max-height: 85px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .speaker-notes-box.open { display: block; }
+
+        /* Slide Index Modal */
+        .slide-modal {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, var(--slide-bg-2), var(--slide-bg));
+            z-index: 100;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .slide-modal.open { display: flex; flex-direction: column; }
+        .modal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+        .modal-item {
+            background: var(--card-surface);
+            border: 1px solid var(--border-dim);
+            padding: 11px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .modal-item:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .modal-item h5 { color: var(--text-heading); font-size: 11.5px; margin-bottom: 2px; }
+        .modal-item span { font-size: 10.5px; color: var(--text-muted); }
+
+        /* ==================== MOBILE & TABLET MEDIA QUERIES ==================== */
+        @media (max-width: 992px) {
+            body { padding: 0; margin: 0; justify-content: flex-start; }
+            .deck-shell {
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                border-radius: 0;
+                border: none;
+            }
+            .slide {
+                padding: 18px 20px;
+            }
+            .slide-cover { padding: 22px 20px; }
+            .slide-cover::after { font-size: 180px; right: 10px; }
+            .slide-nav-bar h2 { font-size: 18px; }
+            .hero-heading { font-size: 27px; }
+            .hero-desc { font-size: 13.5px; margin-bottom: 16px; }
+            .grid-2, .grid-3, .stat-row { grid-template-columns: 1fr; gap: 12px; }
+            .flow-container { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); margin: 4px 0; }
+            .author-box-prominent { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .modal-grid { grid-template-columns: repeat(2, 1fr); }
+            .deck-controls {
+                padding: 8px 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .btn-ctrl { padding: 6px 10px; font-size: 11px; }
+            .slide-counter-badge { font-size: 11px; }
+        }
+
+        /* ==================== PRINT: every slide on its own page ==================== */
+        @media print {
+            @page { size: 1180px 680px; margin: 0; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            html, body { background: var(--slide-bg) !important; }
+            body { display: block; min-height: 0; }
+            .deck-shell {
+                width: 1180px;
+                height: auto;
+                display: block;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                overflow: visible;
+            }
+            .deck-shell::before, .deck-shell::after,
+            .progress-line-track, .deck-controls,
+            .speaker-notes-box, .slide-modal { display: none !important; }
+            .slide {
+                display: flex !important;
+                height: auto;
+                min-height: 680px;
+                overflow: visible;
+                animation: none !important;
+                break-after: page;
+                page-break-after: always;
+            }
+            .panel-card:hover, .modal-item:hover { transform: none; }
+        }
+    </style>
+    <style id="premium-theme">
+        /* ===== PROFESSIONAL: white / charcoal / bordeaux (no blue) ===== */
+        :root {
+            --font-display: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+            --bg-canvas: #0c0c0d; --slide-bg: #161617; --slide-bg-2: #1c1c1e;
+            --card-surface: #1f1f22; --card-surface-hover: #26262a;
+            --border-dim: #2e2e32; --border-bright: #44444a;
+            --text-heading: #f5f5f4; --text-body: #c8c6c2; --text-muted: #8e8b86;
+            --primary: #d4818b; --on-primary: #1a0b0e; --primary-soft: rgba(212,129,139,.10);
+            --accent-royal: #a8a29e; --accent-royal-bg: rgba(168,162,158,.10);
+            --accent-emerald: #6fb08f; --accent-emerald-bg: rgba(111,176,143,.10);
+            --accent-gold: #d1a24c; --accent-gold-bg: rgba(209,162,76,.10);
+            --accent-coral: #e0786c; --accent-coral-bg: rgba(224,120,108,.10);
+            --accent-indigo: #b794c4; --accent-indigo-bg: rgba(183,148,196,.10);
+            --glow-1: transparent; --glow-2: transparent;
+            --shadow-card: none; --bar-fill: rgba(212,129,139,.28);
+        }
+        body.theme-light {
+            --bg-canvas: #e8e8e6; --slide-bg: #ffffff; --slide-bg-2: #f5f5f3;
+            --card-surface: #fafaf9; --card-surface-hover: #f3f3f1;
+            --border-dim: #e4e4e7; --border-bright: #d1d1d6;
+            --text-heading: #18181b; --text-body: #3f3f46; --text-muted: #71717a;
+            --primary: #7a1f2b; --on-primary: #ffffff; --primary-soft: rgba(122,31,43,.07);
+            --accent-royal: #3f3f46; --accent-royal-bg: #efeff0;
+            --accent-emerald: #2f6b4f; --accent-emerald-bg: #e9f3ee;
+            --accent-gold: #a16a1a; --accent-gold-bg: #f8efdc;
+            --accent-coral: #b4443a; --accent-coral-bg: #fbeceb;
+            --accent-indigo: #6b4a7a; --accent-indigo-bg: #f1ebf4;
+            --glow-1: transparent; --glow-2: transparent;
+            --shadow-card: 0 1px 2px rgba(0,0,0,.05); --bar-fill: rgba(122,31,43,.18);
+        }
+        body { background: radial-gradient(900px 500px at 50% -8%, var(--glow-1), transparent 70%), var(--bg-canvas); }
+        .deck-shell { border-radius: 14px; box-shadow: 0 50px 100px -40px rgba(0,0,0,.75); background: linear-gradient(170deg, var(--slide-bg-2), var(--slide-bg) 55%); }
+        body.theme-light .deck-shell { box-shadow: 0 40px 80px -40px rgba(60,45,15,.35); }
+        .progress-line-track { height: 2px; }
+        .progress-line-fill { background: linear-gradient(90deg, var(--primary), var(--accent-royal)); box-shadow: none; }
+        .slide { padding: 32px 48px 24px; }
+        .slide-nav-bar { padding-bottom: 14px; margin-bottom: 20px; }
+        .slide-nav-bar h2 { font-size: 26px; font-weight: 500; letter-spacing: -.4px; }
+        .slide-nav-bar h2::before { width: 3px; height: 24px; border-radius: 0; background: var(--primary); }
+        .badge-pill { background: transparent !important; border-radius: 4px; font-size: 10px; letter-spacing: 1.2px; font-weight: 600; padding: 5px 11px; }
+
+        .panel-card, .flow-box, .stat-tile, .author-box-prominent, .poll-card {
+            background: var(--card-surface); border: 1px solid var(--border-dim); border-radius: 10px; box-shadow: var(--shadow-card);
+        }
+        .panel-card { transition: border-color .2s ease, background .2s ease; }
+        .panel-card:hover { transform: none; background: var(--card-surface-hover); border-color: var(--border-bright); }
+        .panel-card.border-royal, .flow-box.border-royal { border-left: 3px solid var(--accent-royal); }
+        .panel-card.border-emerald, .flow-box.border-emerald { border-left: 3px solid var(--accent-emerald); }
+        .panel-card.border-gold, .flow-box.border-gold { border-left: 3px solid var(--accent-gold); }
+        .panel-card.border-coral, .flow-box.border-coral { border-left: 3px solid var(--accent-coral); }
+        .panel-card.border-indigo, .flow-box.border-indigo { border-left: 3px solid var(--accent-indigo); }
+        .panel-card h3 { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -.1px; }
+        ul.cyber-bullets li::before { content: "—"; font-size: 12px; top: 1px; left: 0; color: var(--primary); }
+
+        .hero-heading { font-size: 44px; font-weight: 500; line-height: 1.14; letter-spacing: -1.2px; }
+        .hero-heading .hero-highlight { font-style: italic; background: none; -webkit-text-fill-color: var(--primary); color: var(--primary); }
+        .hero-desc { font-size: 15.5px; font-weight: 400; letter-spacing: .1px; }
+        .slide-cover::after { color: var(--primary); opacity: .045; font-weight: 500; }
+        .author-avatar { background: transparent; color: var(--primary); border: 1px solid var(--primary); border-radius: 50%; font-family: var(--font-display); font-weight: 500; }
+
+        .tab-btn, .filter-btn { background: transparent; border: 1px solid var(--border-bright); box-shadow: none; }
+        .tab-btn.active, .filter-btn.active { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+        .poll-card { border-color: var(--border-bright); }
+        .poll-option { border-radius: 8px; }
+        .poll-option:hover { transform: none; border-color: var(--primary); }
+        table.pro-table { border-radius: 10px; }
+        table.pro-table th { background: transparent; color: var(--primary); border-bottom: 1px solid var(--border-bright); font-weight: 600; }
+        table.pro-table tr.row-neoclassic td:first-child, table.pro-table tr.row-neutral td:first-child, table.pro-table tr.row-positive td:first-child { box-shadow-width: 3px; }
+        .tag-chip { background: transparent; border-radius: 4px; }
+        .flow-arrow { text-shadow: none; font-weight: 300; }
+        .stat-num { font-weight: 500; font-size: 48px; }
+        .ref-group-label { color: var(--primary); letter-spacing: 1.4px; border-bottom: 1px solid var(--border-bright); padding-bottom: 6px; display: block; }
+
+        /* ---- Navigation bar ---- */
+        .deck-controls { background: transparent; border-top: 1px solid var(--border-dim); padding: 12px 24px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+        .ctrl-group { display: flex; gap: 4px; align-items: center; }
+        .ctrl-group:last-child { justify-content: flex-end; }
+        .ctrl-center { display: flex; align-items: center; gap: 16px; }
+        .btn-ctrl { background: transparent; border: 1px solid transparent; color: var(--text-muted); border-radius: 8px; font-size: 12px; font-weight: 500; letter-spacing: .2px; padding: 8px 12px; }
+        .btn-ctrl:hover { background: var(--card-surface); border-color: var(--border-dim); color: var(--text-heading); }
+        .nav-arrow { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-bright); background: transparent; color: var(--text-heading); font-size: 18px; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .18s ease; }
+        .nav-arrow:hover { border-color: var(--primary); color: var(--primary); }
+        .nav-arrow-next { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+        .nav-arrow-next:hover { color: var(--on-primary); filter: brightness(1.1); transform: translateX(2px); }
+        .slide-counter-badge { background: transparent; border: none; color: var(--text-muted); font-variant-numeric: tabular-nums; letter-spacing: .6px; min-width: 96px; text-align: center; font-weight: 500; }
+        .btn-ctrl:focus-visible, .nav-arrow:focus-visible, .tab-btn:focus-visible, .filter-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+        .modal-item { border-radius: 8px; }
+        .modal-item:hover { transform: none; }
+
+        @media (max-width: 992px) {
+            .slide { padding: 18px 20px; }
+            .hero-heading { font-size: 29px; letter-spacing: -.6px; }
+            .slide-nav-bar h2 { font-size: 19px; }
+            .deck-controls { grid-template-columns: 1fr 1fr; padding: 8px 12px; gap: 4px; }
+            .ctrl-center { grid-column: 1 / -1; order: -1; justify-content: center; }
+            .btn-ctrl { padding: 6px 8px; font-size: 11px; }
+            .nav-arrow { width: 38px; height: 38px; }
+        }
+
+        /* ---- professional overrides ---- */
+        body { background: var(--bg-canvas); }
+        .deck-shell { background: var(--slide-bg); border-radius: 10px; box-shadow: 0 24px 60px -28px rgba(0,0,0,.35); }
+        body.theme-light .deck-shell { box-shadow: 0 18px 50px -24px rgba(0,0,0,.25); }
+        .deck-shell::before, .deck-shell::after { display: none; }
+        .progress-line-fill { background: var(--primary); }
+        .slide-nav-bar h2 { font-weight: 700; letter-spacing: -.3px; font-size: 24px; }
+        .panel-card h3, .stat-num, .author-avatar { font-family: var(--font-display); }
+        .panel-card h3 { font-weight: 700; }
+        .hero-heading { font-weight: 800; letter-spacing: -1.4px; font-size: 42px; }
+        .hero-heading .hero-highlight { font-style: normal; color: var(--primary); -webkit-text-fill-color: var(--primary); }
+        .slide-cover { background: linear-gradient(90deg, var(--primary) 0 8px, transparent 8px); padding-left: 64px; }
+        .slide-cover::after { display: none; }
+        .author-avatar { border-radius: 8px; background: var(--primary); color: var(--on-primary); border: none; font-weight: 700; }
+        .stat-num { font-weight: 700; }
+        .badge-pill { font-weight: 700; }
+        table.pro-table th { background: var(--slide-bg-2); color: var(--text-heading); letter-spacing: .8px; }
+        .tab-btn.active, .filter-btn.active { background: var(--text-heading); color: var(--slide-bg); border-color: var(--text-heading); }
+        .tag-chip { color: var(--text-body); border-color: var(--border-bright); background: transparent; }
+        .poll-card { border-color: var(--border-bright); }
+        body.theme-light ul.refs-list a { color: var(--primary); }
+        ul.refs-list a { color: var(--primary); }
+        .deck-controls { background: var(--slide-bg); }
+        @media (max-width: 992px) { .slide-cover { padding-left: 28px; } .hero-heading { font-size: 28px; } }
+    </style>
+</head>
+<body class="theme-light">
+
+<div class="deck-shell" id="deckShell">
+
+    <!-- Slim Progress Line -->
+    <div class="progress-line-track">
+        <div class="progress-line-fill" id="progressFill"></div>
+    </div>
+
+    <!-- ========================================== SLIDE 1: KAPAK ========================================== -->
+    <div class="slide slide-cover active" data-notes="Sayın hocam ve değerli arkadaşlarım merhaba. Ben Muhammed Ali Elban. Bugün Araştırma Yöntem ve Teknikleri dersi seminerimde, Türkiye ekonomisinde asgari ücret artışlarının genç istihdamı ve işsizlik üzerindeki etkilerini inceleyen ampirik ekonometrik literatürün sistematik sentezini sunacağım.">
+        <div style="margin: auto 0;">
+            <div style="display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;">
+                <span class="badge-pill badge-royal">Ekonometri Semineri</span>
+                <span class="badge-pill badge-indigo">Araştırma Yöntem ve Teknikleri</span>
+                <span class="badge-pill badge-emerald">TÜİK Veri Tabanı</span>
+                <span class="badge-pill badge-gold">📱 Mobil Uyumlu</span>
+            </div>
+
+            <h1 class="hero-heading">Türkiye’de Asgari Ücret Artışlarının <br><span class="hero-highlight">İstihdam ve Genç İşsizliği</span> Üzerindeki Etkisi</h1>
+            <p class="hero-desc">Ampirik Ekonometrik Literatürün Sistematik İncelemesi, TÜİK Veri Altyapısı ve Yöntemsel Değerlendirme</p>
+
+            <div class="author-box-prominent">
+                <div class="author-avatar-name">
+                    <div class="author-avatar">ME</div>
+                    <div class="author-info">
+                        <h4>Muhammed Ali Elban</h4>
+                        <p>Ekonometri Bölümü • Araştırma Yöntem ve Teknikleri Seminer Çalışması</p>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-royal); font-weight: 700;">İnteraktif & Rahat İnceleme</span>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 3px;">Alttaki Butonlar ile Slaytlar Arasında Geçiş Yapabilirsiniz</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 2: GİRİŞ 1 ========================================== -->
+    <div class="slide" data-notes="Giriş bölümümüzün ilk slaytında Türkiye'de asgari ücretin neden sadece bir taban ücret değil, temel bir makroekonomik değişken olduğunu ortaya koyuyoruz. OECD ülkelerinde asgari ücretli oranı yüzde on civarındayken, Türkiye'de yüzde kırktan fazladır. Bu yüzden asgari ücret kararları doğrudan tüm maliyet dengelerini etkiler.">
+        <div class="slide-nav-bar">
+            <h2>Giriş: Türkiye’de Asgari Ücretin Makro Rolü</h2>
+            <span class="badge-pill badge-royal">Bölüm 1: Giriş</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-royal">
+                <h3>📌 Gösterge Ücret Niteliği ve Kapsam</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>OECD Karşılaştırması:</strong> Fransa'da asgari ücret civarında çalışanların oranı yaklaşık yüzde on iki, Almanya'da yüzde altı iken; Türkiye'de bu oran <strong>yüzde kırk iki ile kırk beş</strong> arasındadır.</li>
+                    <li><strong>Taban Ücretten Ortalama Ücrete:</strong> Türkiye'de asgari ücret, piyasaya yeni giren düşük vasıflıların koruma ücreti olmaktan çıkmış; genel imalat ve hizmet sektörlerinde <strong>fiili ortalama ücret</strong> haline gelmiştir.</li>
+                    <li><strong>Maliyet Esnekliği:</strong> Şirketlerin toplam işletme giderleri içerisinde işgücü payı yüksek olduğundan, asgari ücret zamları doğrudan firma kâr marjlarını ve fiyatlama davranışlarını sarsmaktadır.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-indigo">
+                <h3>📊 Makroekonomik Yansıma Kanalları</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Maliyet Kanalı:</strong> İşverenin birim emek maliyetini aniden artırarak istihdamı azaltma yönünde baskı kurar (Neoklasik kanal).</li>
+                    <li><strong>Efektif Talep Kanalı:</strong> Düşük gelirli kesimin marjinal tüketim eğilimi yüksek olduğu için, ücret artışları doğrudan iç talebe ve perakende satışlarına dönüşür (Keynesyen kanal).</li>
+                    <li><strong>Fiyatlama Kanalı:</strong> Firmalar artan ücret maliyetini çalışan çıkarmak yerine etiket fiyatlarına yansıtarak enflasyonu tetikler (Ücret-Fiyat Sarmalı).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 3: GİRİŞ 2 ========================================== -->
+    <div class="slide" data-notes="İkinci slaytımızda genç işgücünün durumunu inceliyoruz. Neden genel işsizlik değil de genç işsizliği? Çünkü 15-24 yaş arası gençler tecrübesizdir, marjinal verimlilikleri düşüktür ve Türkiye'de her 4 gençten biri ne eğitimde ne istihdamdadır. Asgari ücrete gelen bir zam ilk olarak bu hassas kitleyi vurur.">
+        <div class="slide-nav-bar">
+            <h2>Giriş: Genç İşgücünün Kırılgan Konumu (15-24 Yaş)</h2>
+            <span class="badge-pill badge-royal">Bölüm 1: Giriş</span>
+        </div>
+        <div class="grid-3">
+            <div class="panel-card border-coral">
+                <h3>1. Marjinal Verimlilik Sınırı</h3>
+                <p>Genç işçiler mesleki tecrübe, sektör bilgisi ve iş disiplini açısından kıdemli işçilere göre daha düşük verimliliğe sahiptir. Yasal asgari ücret artırıldığında, işveren bu ücreti tecrübesiz bir gence ödemek yerine kıdemli işçiyi tutmayı veya otomasyona geçmeyi tercih eder.</p>
+            </div>
+            <div class="panel-card border-gold">
+                <h3>2. Yüksek NEET Oranı (%25-28)</h3>
+                <p>TÜİK verilerine göre Türkiye'de 15-24 yaş grubunun yaklaşık <strong>yüzde yirmi beşi ile yirmi sekizi</strong> ne eğitimde ne de istihdamdadır (NEET). Gençlerin işgücüne katılım oranının düşüklüğü, asgari ücret artışlarının istihdam üzerindeki etkisini çok daha kırılgan hale getirmektedir.</p>
+            </div>
+            <div class="panel-card border-indigo">
+                <h3>3. Vasıf Uyuşmazlığı Sorunu</h3>
+                <p>Üniversite mezunu gençlerin dahi piyasada talep edilen teknik ve pratik becerilerle donatılmamış olması, onları başlangıçta asgari ücret bandına sıkıştırmakta ve asgari ücret artışlarında iş bulma sürelerini uzatmaktadır.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 4: GİRİŞ 3 ========================================== -->
+    <div class="slide" data-notes="Burada teorik altyapıyı interaktif olarak üç ana model altında inceliyoruz. Stigler'ın 1946 Neoklasik modeli istihdam kaybı beklerken; Card ve Krueger'ın 1994 Monopson modeli istihdamın korunabileceğini savunur. Pissarides'in Arama-Eşleşme teorisi ise iş arama maliyetlerinin altını çizer.">
+        <div class="slide-nav-bar">
+            <h2>Giriş: İktisat Teorisindeki Üç Temel Yaklaşım</h2>
+            <span class="badge-pill badge-royal">Bölüm 1: Giriş (İnteraktif)</span>
+        </div>
+
+        <div class="tab-controls">
+            <button class="tab-btn active" onclick="switchTheoryTab('tab-neo')">1. Neoklasik Model (Stigler)</button>
+            <button class="tab-btn" onclick="switchTheoryTab('tab-mono')">2. Monopsonik Model (Card & Krueger)</button>
+            <button class="tab-btn" onclick="switchTheoryTab('tab-search')">3. Arama-Eşleşme (Pissarides)</button>
+        </div>
+
+        <div id="tab-neo" class="tab-content active">
+            <div class="panel-card border-coral">
+                <h3>Neoklasik Rekabetçi Emek Piyasası Teorisi (George Stigler, 1946)</h3>
+                <p style="margin-bottom: 8px;">Tam rekabetçi piyasa varsayımı altında ücret, emeğin marjinal hasılat verimliliğine eşittir. Piyasa dengesinin üzerinde belirlenen yasal asgari ücret:</p>
+                <ul class="cyber-bullets">
+                    <li>Emek talebini düşürür, emek arzını artırır ve aradaki fark kadar <strong>istemsiz işsizlik</strong> yaratır.</li>
+                    <li>İşveren marjinal maliyeti karşılayamadığı için en az vasıflı grubu (15-24 yaş gençleri) işten çıkarır.</li>
+                    <li><strong>Öngörülen Sonuç:</strong> Doğrudan ve kalıcı istihdam daralması, genç işsizliği oranında sıçrama.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tab-mono" class="tab-content">
+            <div class="panel-card border-emerald">
+                <h3>Monopsonik ve Eksik Rekabet Piyasası Teorisi (David Card & Alan Krueger, 1994)</h3>
+                <p style="margin-bottom: 8px;">İşgücü piyasasında tam rekabet yoktur; işverenler iş arama zorlukları ve bilgi eksiklikleri nedeniyle piyasada ücret belirleme (monopson) gücüne sahiptir:</p>
+                <ul class="cyber-bullets">
+                    <li>İşveren kârını maksimize etmek için istihdamı serbest piyasa dengesinin altında tutar.</li>
+                    <li>Yasal asgari ücret artışı marjinal emek maliyetini sabitler; işten ayrılmaları azaltır ve verimliliği artırır.</li>
+                    <li><strong>Öngörülen Sonuç:</strong> Asgari ücret artışının istihdam üzerinde sıfır (nötr) veya hafif pozitif etkisi olabilir.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tab-search" class="tab-content">
+            <div class="panel-card border-indigo">
+                <h3>Arama ve Eşleşme Modeli (Mortensen & Pissarides)</h3>
+                <p style="margin-bottom: 8px;">İş arayanlar ile boş iş pozisyonlarının eşleşmesi zaman ve maliyet gerektirir (sürtünmeli piyasa):</p>
+                <ul class="cyber-bullets">
+                    <li>Asgari ücret artışı, gençlerin rezervasyon ücretini (işi kabul etme tabanını) yükseltir.</li>
+                    <li>Gençler piyasada daha uzun süre iş arar, bu durum kısa vadede sürtünmeli genç işsizliğini artırabilir; ancak eşleşme kalitesi yükselir.</li>
+                    <li><strong>Öngörülen Sonuç:</strong> Kısa vadede dalgalı işsizlik, uzun vadede verimlilik odaklı denge.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 5: CANLI SINIF ANKETİ (YENİ İNTERAKTİF SLAYT!) ========================================== -->
+    <div class="slide" data-notes="Arkadaşlar ve sayın hocam, şimdi sunumumuza sizleri de dahil etmek istiyorum. Lütfen telefonlarınızdan veya ekrandan bakın: Sizce Türkiye'de asgari ücret artışı genç işsizliğini gerçekten artırır mı? Gelin hep birlikte oylayalım!">
+        <div class="slide-nav-bar">
+            <h2>İnteraktif Sınıf Anketi: Sizce Asgari Ücret Ne Yapar?</h2>
+            <span class="badge-pill badge-gold">Canlı Katılım</span>
+        </div>
+
+        <div class="poll-card">
+            <div class="poll-title">
+                <span>🗳️ Soru: Türkiye'de asgari ücrete yapılan yüksek oranlı bir zam sizce işgücü piyasasını nasıl etkiler?</span>
+            </div>
+            
+            <div class="poll-option" onclick="voteOption(1)">
+                <div class="poll-bar" id="bar1"></div>
+                <div class="poll-text-wrap">
+                    <span>A) İşsizliği artırır, gençler işten çıkarılır (Neoklasik Görüş)</span>
+                    <span id="vote1Text">%45 (18 Oy)</span>
+                </div>
+            </div>
+
+            <div class="poll-option" onclick="voteOption(2)">
+                <div class="poll-bar" id="bar2"></div>
+                <div class="poll-text-wrap">
+                    <span>B) İşsizliği etkilemez, doğrudan etiket fiyatlarına yansır (Paranın Nötrlüğü)</span>
+                    <span id="vote2Text">%35 (14 Oy)</span>
+                </div>
+            </div>
+
+            <div class="poll-option" onclick="voteOption(3)">
+                <div class="poll-bar" id="bar3"></div>
+                <div class="poll-text-wrap">
+                    <span>C) Tüketim harcamalarını artırarak üretimi ve istihdamı canlandırır (Talep Görüşü)</span>
+                    <span id="vote3Text">%20 (8 Oy)</span>
+                </div>
+            </div>
+        </div>
+
+        <p style="font-size: 12.5px; color: var(--text-muted); text-align: center;">
+            💡 <em>Seçeneklerin üzerine dokunarak oy verebilirsiniz. Bu oranlar, birazdan göreceğimiz 40 ampirik makalenin Türkiye bulgularıyla birebir örtüşmektedir!</em>
+        </p>
+    </div>
+
+    <!-- ========================================== SLIDE 6: AMAÇ 1 ========================================== -->
+    <div class="slide" data-notes="Amaç bölümümüze geçiyoruz. Bu araştırmanın temel amacı; Türkiye ekonomisi üzerine yapılmış 40 ampirik çalışmayı sentezleyerek 'Asgari ücret genç istihdamını gerçekten dışlıyor mu, yoksa piyasa bunu enflasyon yoluyla mı eritiyor?' sorusuna yöntemsel ve veri kaynaklı cevaplar üretmektir.">
+        <div class="slide-nav-bar">
+            <h2>Araştırmanın Temel Amacı ve Gerekçesi</h2>
+            <span class="badge-pill badge-indigo">Bölüm 2: Amaç</span>
+        </div>
+        <div class="panel-card border-indigo" style="margin-bottom: 16px;">
+            <h3>🎯 Temel Araştırma Amacı</h3>
+            <p>Türkiye’de resmi asgari ücret artışlarının istihdam ve genç işsizliği (15-24 yaş) üzerindeki etkisini inceleyen ampirik ekonometri literatürünü sistematik olarak sentezlemek; aynı veri setini kullanmalarına rağmen araştırmacıların neden birbirinden tamamen zıt sonuçlara (işsizliği artıran, azaltan ya da etkisiz bulan) ulaştığını yöntem ve veri tabanı ekseninde ortaya koymaktır.</p>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card">
+                <h3>🔍 Neden Bu Araştırmaya İhtiyaç Duyuldu?</h3>
+                <ul class="cyber-bullets">
+                    <li>Türkiye literatüründe tek bir fikir birliği yoktur; Neoklasik iddiayı doğrulayanlar kadar Card-Krueger Monopson etkisini veya Paranın Nötrlüğünü savunanlar da mevcuttur.</li>
+                    <li>Aynı dönemi inceleyen iki farklı ekonometristin zıt katsayılar bulmasının ardında yatan ekonometrik nedenleri ortaya koymak hedeflenmiştir.</li>
+                </ul>
+            </div>
+            <div class="panel-card">
+                <h3>❓ Yanıt Aranan Çekirdek Soru</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Soru:</strong> Asgari ücret artışları istihdamı daraltmakta mıdır, yoksa nominal bir şok olarak fiyatlar genel düzeyine yansıyıp erimekte midir?</li>
+                    <li><strong>Soru:</strong> 15-24 yaş arası genç işsizliği bu süreçte genel işsizlikten farklı bir tepki vermekte midir?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 7: AMAÇ 2 ========================================== -->
+    <div class="slide" data-notes="Bu slaytta araştırmamızın kapsamını ve sınırlarını çiziyoruz. Araştırmamız ulusal hakemli dergilerdeki 40 ampirik çalışmayı kapsamakta; TÜİK'in HİA ve TÜFE serilerini odak noktası yapmaktadır.">
+        <div class="slide-nav-bar">
+            <h2>Araştırmanın Kapsamı, Sınırları ve Hipotezleri</h2>
+            <span class="badge-pill badge-indigo">Bölüm 2: Amaç</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-royal">
+                <h3>📏 Araştırmanın Kapsamı ve Sınırları</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Kapsanan Literatür:</strong> DergiPark, TR Dizin ve TÜBİTAK ULAKBİM veri tabanlarında taranan 40 hakemli ampirik ekonometri makalesi.</li>
+                    <li><strong>Zaman Aralığı:</strong> 1969 yılından başlayıp 2024 yılına kadar uzanan makroekonomik serileri inceleyen ampirik çalışmalar.</li>
+                    <li><strong>Veri Sınırı:</strong> Yalnızca resmi kurumlar olan TÜİK (HİA, TÜFE, SÜE) ve Çalışma Bakanlığı verileri.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-emerald">
+                <h3>🧪 Sınanan Temel Literatür Hipotezleri</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Hipotez 1 (Neoklasik Dışlama):</strong> Reel asgari ücretteki artışlar genç işsizliği üzerinde istatistiksel olarak anlamlı ve pozitif (işsizliği artıran) bir etkiye sahiptir.</li>
+                    <li><strong>Hipotez 2 (Paranın Nötrlüğü):</strong> Asgari ücret nominaldir; reel işsizliği etkilemez, yalnızca fiyatlar genel düzeyini artırır.</li>
+                    <li><strong>Hipotez 3 (Talep Etkisi):</strong> Tüketimi canlandırarak istihdamı nötr veya pozitif tutar.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 8: MATERYAL 1 ========================================== -->
+    <div class="slide" data-notes="Materyal kısmında ilk verimiz TÜİK HİA'dır. 15-24 yaş genç işsizlik oranını bağımlı değişken olarak ele alıyoruz.">
+        <div class="slide-nav-bar">
+            <h2>Materyal: TÜİK Hanehalkı İşgücü Veri Tabanı (HİA)</h2>
+            <span class="badge-pill badge-emerald">Bölüm 3: Materyal</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-emerald">
+                <h3>📁 TÜİK HİA Verisinin Yapısı ve Özellikleri</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Bağımlı Değişken (Genç İşsizlik Oranı):</strong> TÜİK tarafından yayımlanan 15-24 yaş grubu <strong>Mevsim Etkisinden Arındırılmış Genç İşsizlik Oranı (Yüzde)</strong> serisidir.</li>
+                    <li><strong>Veri Frekansı:</strong> 2005 öncesinde yıllık ve çeyreklik; 2014 sonrasında bağımsız aylık ve çeyreklik bültenler halinde açıklanmaktadır.</li>
+                    <li><strong>İşsizlik Tanımı:</strong> Son 4 hafta içinde iş arama kanallarından en az birini kullanmış ve 2 hafta içinde işbaşı yapabilecek durumda olan kişiler.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-royal">
+                <h3>⚠️ Ekonometrik Modellemedeki Veri Zorlukları</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Mevsimsellik Etkisi:</strong> Yaz aylarında tarım ve turizm sebebiyle işsizlik doğal olarak düşer; bu yüzden mevsimsellikten arındırılmış seriler zorunludur.</li>
+                    <li><strong>Logaritmik Dönüşüm:</strong> Varyansı sabitlemek ve katsayıları esneklik olarak yorumlayabilmek için serilerin logaritması alınır.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 9: MATERYAL 2 ========================================== -->
+    <div class="slide" data-notes="İkinci materyalimiz ücret serisidir. Asla nominal asgari ücretle model kurulamaz; TÜİK TÜFE ile arındırılarak reel ücret oluşturulur.">
+        <div class="slide-nav-bar">
+            <h2>Materyal: Ücret Serisinin Reel Hale Getirilmesi (TÜFE)</h2>
+            <span class="badge-pill badge-emerald">Bölüm 3: Materyal</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-gold">
+                <h3>💰 Nominal Ücret Yanılsaması (Para Aldanması)</h3>
+                <p style="margin-bottom: 8px;">Yüksek enflasyon dönemlerinde nominal ücret yüzde elli artsa bile satın alma gücü eriyebilir:</p>
+                <ul class="cyber-bullets">
+                    <li>Nominal ücret kullanılırsa sahte pozitif bir ilişki ortaya çıkabilir.</li>
+                    <li>İşveren istihdam kararını nominal maliyete göre değil, <strong>Reel Ücret</strong> seviyesine göre verir.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-royal">
+                <h3>⚙️ TÜİK 2003=100 TÜFE ile Deflasyon İşlemi</h3>
+                <p style="margin-bottom: 8px;">TÜİK Tüketici Fiyat Endeksi serisi kullanılarak aşağıdaki formül uygulanır:</p>
+                <div style="background: var(--slide-bg); border: 1px solid var(--border-dim); padding: 10px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-weight: 700; color: var(--accent-royal); font-size: 13px;">
+                    Reel Asgari Ücret = (Nominal Net Asgari Ücret / TÜFE) × 100
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted);">Böylece enflasyonun yarattığı yapay büyüme arındırılarak reel maliyet izole edilir.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 10: MATERYAL 3 ========================================== -->
+    <div class="slide" data-notes="Kontrol değişkenlerimiz: Sanayi Üretim Endeksi ve GSYH. Büyümenin yarattığı doğal istihdam artışı kontrol edilmelidir.">
+        <div class="slide-nav-bar">
+            <h2>Materyal: Ekonomik Büyüme ve Kontrol Değişkenleri</h2>
+            <span class="badge-pill badge-emerald">Bölüm 3: Materyal</span>
+        </div>
+        <div class="grid-3">
+            <div class="panel-card border-royal">
+                <h3>1. Sanayi Üretim Endeksi (SÜE)</h3>
+                <p>TÜİK aylık takvim ve mevsim etkisinden arındırılmış 2015=100 serisi. Reel ekonomik aktiviteyi temsil eden en güçlü öncü göstergedir.</p>
+            </div>
+            <div class="panel-card border-emerald">
+                <h3>2. Çeyreklik GSYH Büyümesi</h3>
+                <p>Okun Yasası gereği büyüme işsizliği doğal olarak düşürür; bu etkinin modelde kontrol altında tutulması şarttır.</p>
+            </div>
+            <div class="panel-card border-indigo">
+                <h3>3. Kapasite Kullanım Oranı</h3>
+                <p>TCMB imalat sanayi serisi. Kapasite sınırına yaklaşan işletmelerin işgücü talebini kontrol eder.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 11: YÖNTEM 1 ========================================== -->
+    <div class="slide" data-notes="Literatürde en çok tercih edilen yöntem ARDL sınır testidir. Pesaran ve Shin yaklaşımı, serilerin durağanlık derecesi farklı olduğunda eşbütünleşme test etmeye yarar.">
+        <div class="slide-nav-bar">
+            <h2>Yöntem: ARDL Sınır Testi Yaklaşımı (Pesaran vd., 2001)</h2>
+            <span class="badge-pill badge-emerald">Bölüm 3: Yöntem</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-royal">
+                <h3>⚙️ ARDL Yönteminin Temel Mantığı</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Durağanlık Esnekliği:</strong> Serilerin seviyede veya birinci farkta olmasına izin verir.</li>
+                    <li><strong>Eş Anlı Tahmin:</strong> Kısa dönemli ani şoklar ile uzun dönemli kalıcı denge ilişkisini aynı model içinde ayrıştırır.</li>
+                    <li><strong>Küçük Örneklem Başarısı:</strong> Veri uzunluğunun sınırlı olduğu Türkiye'de en güvenilir sonuç veren modeldir.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-emerald">
+                <h3>🔍 Modelin Çalışma Aşamaları</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>1. Birim Kök:</strong> ADF ve PP testleriyle ikinci farkta durağan seri olmadığı doğrulanır.</li>
+                    <li><strong>2. Sınır Testi:</strong> Kritik F-istatistiği aşıldığında eşbütünleşme bağı onaylanır.</li>
+                    <li><strong>3. Hata Düzeltme (ECM):</strong> Sistemin şoklardan sonra dengeye döndüğü test edilir.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 12: YÖNTEM 2 ========================================== -->
+    <div class="slide" data-notes="Toda-Yamamoto nedensellik testi korelasyon ile nedenselliği ayırt eder. VAR modeliyle yön tayini yapar.">
+        <div class="slide-nav-bar">
+            <h2>Yöntem: Toda-Yamamoto Nedensellik ve VECM</h2>
+            <span class="badge-pill badge-emerald">Bölüm 3: Yöntem</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-indigo">
+                <h3>🎯 Toda-Yamamoto (1995) Nedensellik Analizi</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Yöntemin Üstünlüğü:</strong> Seviye değerleriyle VAR kurarak sahte regresyon riskini bertaraf eder.</li>
+                    <li><strong>Yön Belirleme:</strong> Asgari ücretten işsizliğe mi, yoksa enflasyondan ücrete doğru mu nedensellik olduğunu Wald testiyle belirler.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-gold">
+                <h3>🔄 Vektör Hata Düzeltme Modeli (VECM)</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Dengeye Dönüş Hızı:</strong> Şok sonrasında sistemin kaç dönemde uzun dönem dengesine döndüğünü ölçer.</li>
+                    <li><strong>Kısa Dönem Ayrımı:</strong> Kısa dönemli geçici işten çıkarmalar ile kalıcı etkiyi birbirinden ayırır.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 13: YÖNTEM 3 ========================================== -->
+    <div class="slide" data-notes="Sektörel Panel Regresyon: Tekstil gibi emek-yoğun sektörler ile teknoloji sektörünü ayrı ayrı analiz eder.">
+        <div class="slide-nav-bar">
+            <h2>Yöntem: Sektörel Panel Veri Regresyon Modelleri</h2>
+            <span class="badge-pill badge-emerald">Bölüm 3: Yöntem</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-royal">
+                <h3>🏢 Sektörel Heterojenliğin Modellenmesi</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Tekil Seri Kısıtı:</strong> Türkiye geneli zaman serisi modelleri tüm sektörleri tek bir torbaya koyar. Oysa sektörlerin asgari ücret esnekliği farklıdır.</li>
+                    <li><strong>Panel Verinin Gücü:</strong> TÜİK'in NACE Rev.2 sınıflamasına göre 16 veya 24 faaliyet kolunu zaman ve kesit boyutuyla eşanlı inceler.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-emerald">
+                <h3>📐 Sabit ve Rassal Etkiler Tahmincileri</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Hausman Testi:</strong> Sektöre özgü nitelikler için Sabit mi Rassal Etkiler mi kullanılacağını belirler.</li>
+                    <li><strong>Cinsiyet Ayrımı:</strong> Kadın ve erkek istihdamı ayrı ayrı modellenerek ücret şoklarının etkileri ölçülür.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 14: BULGULAR 1 ========================================== -->
+    <div class="slide" data-notes="Bulgular bölümümüzde taranan 40 ampirik makalenin genel dağılımını görüyoruz: Yüzde 45 Neoklasik, yüzde 35 Paranın Nötrlüğü, yüzde 20 Talep/Monopson etkisi.">
+        <div class="slide-nav-bar">
+            <h2>Bulgular: 40 Ampirik Makalenin Sonuç Dağılımı</h2>
+            <span class="badge-pill badge-gold">Bölüm 4: Bulgular</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-gold">
+                <h3>📊 Bulguların Teorik Dağılımı (40 Makale)</h3>
+                <div style="margin-top: 10px;">
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                            <span>Neoklasik Bulgu (İşsizliği Artıran)</span>
+                            <strong style="color: var(--accent-coral);">%45 (18 Makale)</strong>
+                        </div>
+                        <div style="background: var(--border-dim); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent-coral); width: 45%; height: 100%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                            <span>Paranın Nötrlüğü (Etkisiz / Enflasyona Yansıyan)</span>
+                            <strong style="color: var(--accent-royal);">%35 (14 Makale)</strong>
+                        </div>
+                        <div style="background: var(--border-dim); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent-royal); width: 35%; height: 100%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                            <span>Monopson / Talep (İstihdamı Koruyan)</span>
+                            <strong style="color: var(--accent-emerald);">%20 (8 Makale)</strong>
+                        </div>
+                        <div style="background: var(--border-dim); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent-emerald); width: 20%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-card border-royal">
+                <h3>⚙️ Kullanılan Ekonometrik Yöntemler</h3>
+                <div style="margin-top: 10px;">
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                            <span>ARDL Sınır Testi Modelleri</span>
+                            <strong style="color: var(--accent-royal);">%55 (22 Makale)</strong>
+                        </div>
+                        <div style="background: var(--border-dim); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent-royal); width: 55%; height: 100%;"></div>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                            <span>VAR / VECM & Toda-Yamamoto</span>
+                            <strong style="color: var(--accent-indigo);">%25 (10 Makale)</strong>
+                        </div>
+                        <div style="background: var(--border-dim); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent-indigo); width: 25%; height: 100%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+                            <span>Sektörel Panel Veri Modelleri</span>
+                            <strong style="color: var(--accent-emerald);">%20 (8 Makale)</strong>
+                        </div>
+                        <div style="background: var(--border-dim); height: 8px; border-radius: 4px; overflow: hidden;">
+                            <div style="background: var(--accent-emerald); width: 20%; height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 15: BULGULAR 2 ========================================== -->
+    <div class="slide" data-notes="Literatürün 6 çekirdek çalışmasını interaktif filtreleme ile görüyoruz. Butonlara basarak Neoklasik, Nötr veya Pozitif sonuçları filtreleyebilirsiniz.">
+        <div class="slide-nav-bar">
+            <h2>Bulgular: Çekirdek Ampirik Makaleler Sentez Matrisi</h2>
+            <span class="badge-pill badge-gold">Bölüm 4: Bulgular</span>
+        </div>
+
+        <div class="filter-bar">
+            <span style="font-size: 11px; color: var(--text-muted);">Filtrele:</span>
+            <button class="filter-btn active" onclick="filterMatrix('all')">Tümü (6)</button>
+            <button class="filter-btn" onclick="filterMatrix('neoclassic')">İşsizlik Artışı (%45)</button>
+            <button class="filter-btn" onclick="filterMatrix('neutral')">Paranın Nötrlüğü (%35)</button>
+            <button class="filter-btn" onclick="filterMatrix('positive')">İstihdam Destek (%20)</button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="pro-table" id="matrixTable">
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">Yazar ve Yıl</th>
+                        <th style="width: 18%;">İncelenen Dönem</th>
+                        <th style="width: 20%;">Kullanılan Yöntem</th>
+                        <th style="width: 40%;">Elde Edilen Temel Ampirik Sonuç</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row-neutral">
+                        <td><strong>Özer ve Gülşen (2025)</strong></td>
+                        <td>1969-2022 (TÜİK Yıllık)</td>
+                        <td><span class="tag-chip">Fourier Toda-Yamamoto</span></td>
+                        <td>Enflasyon ile çift yönlü nedensellik bulunurken; <strong>işsizlik ve büyüme ile nedensellik bulunamamıştır (Paranın Nötrlüğü).</strong></td>
+                    </tr>
+                    <tr class="row-neoclassic">
+                        <td><strong>Gümüş ve Akgüneş (2020)</strong></td>
+                        <td>1982-2018 (TÜİK Yıllık)</td>
+                        <td><span class="tag-chip">ARDL Sınır Testi & Granger</span></td>
+                        <td>Asgari ücret artışlarının <strong>uzun vadede işsizlik oranını artırdığı (Neoklasik hipotezle uyumlu)</strong> bulunmuştur.</td>
+                    </tr>
+                    <tr class="row-neutral">
+                        <td><strong>Avcı (2022)</strong></td>
+                        <td>1996-2018 (TÜİK HİA)</td>
+                        <td><span class="tag-chip">ARDL Sınır Testi</span></td>
+                        <td>Genç işsizliğinde asıl belirleyicinin büyüme olduğu; ücret değişimlerinin kısa dönemli geçici dalgalanma yarattığı görülmüştür.</td>
+                    </tr>
+                    <tr class="row-neutral">
+                        <td><strong>Tüleykan (2019)</strong></td>
+                        <td>1988-2018 (6 Aylık)</td>
+                        <td><span class="tag-chip">VECM Modeli</span></td>
+                        <td>Kısa dönemde asgari ücret ile işsizlik arasında dalgalanmalar oluşmakta, ancak <strong>uzun vadede etki sönümlenmektedir.</strong></td>
+                    </tr>
+                    <tr class="row-positive">
+                        <td><strong>Altunöz (2016)</strong></td>
+                        <td>1980-2014 (TÜİK Verisi)</td>
+                        <td><span class="tag-chip">ARDL Sınır Testi</span></td>
+                        <td>Eşbütünleşme vardır. Asgari ücretteki yüzde birlik artışın iç talebi canlandırarak <strong>işsizliği yüzde 0.12 azalttığı</strong> tespit edilmiştir.</td>
+                    </tr>
+                    <tr class="row-positive">
+                        <td><strong>Dağlıoğlu ve Bakır (2015)</strong></td>
+                        <td>2008-2012 (TÜİK 16 Sektör)</td>
+                        <td><span class="tag-chip">Sektörel Panel Regresyon</span></td>
+                        <td>Sektörel düzeyde asgari ücret artışları ile istihdam arasında <strong>hafif pozitif ilişki</strong> saptanmıştır.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 16: TARTIŞMA 1 ========================================== -->
+    <div class="slide" data-notes="Aktarım mekanizması: Asgari ücret işten çıkarmayla değil, fiyatlara yansıtılarak dengelenir. Yani işsizlik yerine enflasyon doğurur.">
+        <div class="slide-nav-bar">
+            <h2>Tartışma: Aktarım Mekanizması (Ücret-Fiyat Sarmalı)</h2>
+            <span class="badge-pill badge-royal">Bölüm 4: Tartışma</span>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-body); margin-bottom: 10px;">Türkiye'de asgari ücret şoklarının reel istihdam yerine neden doğrudan fiyatlara yansıdığını gösteren akış şeması:</p>
+
+        <div class="flow-container">
+            <div class="flow-box border-royal">
+                <h4>1. Nominal Zam</h4>
+                <p>Asgari ücrete yapılan yasal şok artış (Maliyet)</p>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-box border-gold">
+                <h4>2. İşveren Tepkisi</h4>
+                <p>İşçi çıkarmak yerine maliyeti etiket fiyatlarına yansıtma</p>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-box border-coral">
+                <h4>3. Enflasyon Artışı</h4>
+                <p>TÜFE yükselir, talep canlı kalır, kâr marjı korunur</p>
+            </div>
+            <div class="flow-arrow">➔</div>
+            <div class="flow-box border-indigo">
+                <h4>4. Reel Ücret Erimesi</h4>
+                <p>Reel asgari ücret hızla eski denge seviyesine döner</p>
+            </div>
+        </div>
+
+        <div class="panel-card border-royal" style="margin-top: 14px;">
+            <h3>📌 Ekonometrik Çıkarım: Paranın Nötrlüğü Teoremi</h3>
+            <p>Özer ve Gülşen'in (2025) kanıtladığı üzere; asgari ücret nominal olarak arttığında reel istihdam göstergeleri kalıcı olarak değişmemektedir. Çünkü sistem maliyeti istihdamı daraltarak değil, enflasyonu yükselterek absorbe etmekte ve reel ücreti hızla denge seviyesine geri çekmektedir.</p>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 17: TARTIŞMA 2 ========================================== -->
+    <div class="slide" data-notes="TÜİK metodoloji kırılmaları ve kayıt dışılık tamponu. Sonuçların farklılaşmasının iki büyük ekonometrik nedenidir.">
+        <div class="slide-nav-bar">
+            <h2>Tartışma: Kırılmalar ve Kayıt Dışılık Tamponu</h2>
+            <span class="badge-pill badge-royal">Bölüm 4: Tartışma</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-gold">
+                <h3>1. TÜİK 2005 ve 2014 Metodoloji Kırılmaları</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Eurostat Uyumu:</strong> TÜİK, 2005 ve 2014 yıllarında Avrupa Birliği standartlarına geçiş için HİA soru kağıtlarını ve örneklem büyüklüğünü kökten revize etmiştir.</li>
+                    <li><strong>Sahte Eşbütünleşme:</strong> Bu kırılma tarihlerini kukla değişkenlerle modele dahil etmeyen çalışmalar yanıltıcı katsayılar üretmektedir.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-coral">
+                <h3>2. Genç İstihdamında Kayıt Dışılık Tamponu</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Görünmeyen İstihdam:</strong> Türkiye'de 15-24 yaş arası genç çalışanların yaklaşık üçte biri kayıt dışı istihdam edilmektedir.</li>
+                    <li><strong>Maliyet Emiciliği:</strong> İşveren maliyet baskısıyla karşılaştığında resmi işçi çıkarmak yerine kayıt dışı çalıştırmaya kayarak istihdamı sürdürebilmektedir.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 18: SONUÇ 1 ========================================== -->
+    <div class="slide" data-notes="Sonuç bölümünün ilk slaytında, sentez matrisindeki altı çekirdek çalışmanın ne söylediğini abartmadan özetliyorum. Altı çalışmanın birinde asgari ücret artışı işsizlikle birlikte artıyor, ikisinde işsizlik azalıyor ya da istihdamla pozitif ilişki görülüyor, üçünde ise kalıcı ve anlamlı bir etki bulunmuyor. Yani literatür tek bir yönde birleşmiyor. İkinci olarak, birden fazla çalışmada asgari ücret ile enflasyon arasında bir ilişki saptanıyor, ancak ilişkinin yönü çalışmadan çalışmaya değişiyor.">
+        <div class="slide-nav-bar">
+            <h2>Sonuç: Literatür Ne Söylüyor?</h2>
+            <span class="badge-pill badge-emerald">Bölüm 5: Sonuç</span>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat-tile stat-coral">
+                <div class="stat-num">1</div>
+                <div class="stat-label"><strong>İşsizliği artıran bulgu</strong>Gümüş &amp; Akgüneş (2020)</div>
+            </div>
+            <div class="stat-tile stat-emerald">
+                <div class="stat-num">2</div>
+                <div class="stat-label"><strong>İşsizliği azaltan / istihdamla pozitif ilişki</strong>Altunöz (2016); Dağlıoğlu &amp; Bakır (2015)</div>
+            </div>
+            <div class="stat-tile stat-royal">
+                <div class="stat-num">3</div>
+                <div class="stat-label"><strong>Kalıcı ve anlamlı etki bulunmayan</strong>Özer &amp; Gülşen (2025); Avcı (2022); Tüleykan (2019)</div>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel-card border-royal">
+                <h3>📌 İşsizlik ve İstihdam Etkisi</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Gümüş &amp; Akgüneş (2020):</strong> 1982-2018 döneminde asgari ücret artışlarının işsizlik oranını artırdığını bulmuştur.</li>
+                    <li><strong>Altunöz (2016):</strong> 1980-2014 için asgari ücretteki yüzde 1’lik artışın işsizliği yüzde 0,12 azalttığını bildirmiştir. <strong>Dağlıoğlu &amp; Bakır (2015)</strong> 2008-2012 sektör panelinde hafif pozitif bir ilişki saptamıştır.</li>
+                    <li><strong>Özer &amp; Gülşen (2025)</strong> ve <strong>Tüleykan (2019)</strong> kalıcı bir işsizlik etkisi bulmamıştır; Tüleykan, asgari ücret ile işsizlik arasındaki etkileşimin kısa dönemde dalgalı, uzun dönemde zayıflayan bir seyir izlediğini raporlamıştır.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-gold">
+                <h3>💱 Fiyat (Enflasyon) Kanalı</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Özer &amp; Gülşen (2025):</strong> Nominal asgari ücret ile enflasyon arasında çift yönlü ilişki bulunmuş; nominal ve reel asgari ücret ile işsizlik ve büyüme arasında ilişki bulunmamıştır.</li>
+                    <li><strong>Tüleykan (2019):</strong> Varyans ayrıştırmasında TÜFE’deki değişimin yaklaşık yüzde 31’i kısa, yaklaşık yüzde 43’ü uzun dönemde asgari ücret artışına atfedilmiştir.</li>
+                    <li><strong>Gümüş &amp; Akgüneş (2020):</strong> Enflasyondan asgari ücrete doğru tek yönlü nedensellik saptanmıştır. Yani üç çalışmada da enflasyonla bir ilişki vardır, ancak yön aynı değildir.</li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="caption-note">Not: Yukarıdaki sayımlar yalnızca Bulgular bölümündeki sentez matrisinde yer alan 6 çekirdek çalışmayı kapsar. Aynı ayrım, 40 makalelik taramanın dağılımı (Bulgular 1) için yapılan bir sınıflandırmadır ve bu slayttaki sayılarla karıştırılmamalıdır.</p>
+    </div>
+
+    <!-- ========================================== SLIDE 19: SONUÇ 2 ========================================== -->
+    <div class="slide" data-notes="Bu slaytta genel değerlendirmeyi ve çalışmanın sınırlılıklarını söylüyorum. Mevcut bulgular, asgari ücretin istihdam üzerinde kalıcı olumsuz bir etkisi olduğunu da, hiçbir etkisi olmadığını da kesin biçimde göstermiyor. Sonuçlar dönem, veri ve yönteme göre değişiyor. Ayrıca çalışmaların çoğu toplam işsizlik ya da sektörel istihdam kullandığı için genç işgücüne ilişkin çıkarımlarımız dolaylı kalıyor. Zaman serisi nedensellik testleri de asgari ücretin nedensel etkisini tek başına tanımlamıyor. Bu yüzden sonuçları temkinli yorumlamak gerekiyor.">
+        <div class="slide-nav-bar">
+            <h2>Sonuç: Genel Değerlendirme ve Sınırlılıklar</h2>
+            <span class="badge-pill badge-emerald">Bölüm 5: Sonuç</span>
+        </div>
+
+        <div class="panel-card border-emerald" style="margin-bottom: 14px;">
+            <h3>🎯 Genel Değerlendirme</h3>
+            <p class="lead-text">Bu sentez, Türkiye’de asgari ücret artışlarının istihdam ya da genç işsizliği üzerinde tek yönlü ve kalıcı bir olumsuz etki yarattığını göstermemektedir; etkinin hiç bulunmadığını da kesin olarak göstermemektedir. Çalışmalar dönem, veri seti ve yönteme bağlı olarak farklı sonuçlara ulaşmaktadır.</p>
+            <p class="lead-text">Enflasyonla ilişki birden fazla çalışmada saptanmıştır, fakat yönü çalışmaya göre değişmektedir. “Paranın nötrlüğü” yorumu bu matriste en açık biçimde Özer &amp; Gülşen (2025) tarafından ortaya konmuştur; tek bir çalışmanın bulgusu olarak genellenmemelidir.</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="panel-card border-coral">
+                <h3>⚠️ Sınırlılıklar</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Örneklem:</strong> Sentez matrisi 6 çalışmayla sınırlıdır ve literatürün tamamını temsil etmez. Bir görüşü destekleyen makalenin çok olması, o görüşün doğruluğunun ölçüsü değildir.</li>
+                    <li><strong>Bağımlı değişken:</strong> Çalışmaların büyük bölümü toplam işsizlik ya da sektörel istihdam kullanmaktadır. 15-24 yaş grubuna özgü doğrudan kanıt sınırlıdır; genç işgücüne ilişkin çıkarım dolaylıdır.</li>
+                </ul>
+            </div>
+            <div class="panel-card border-gold">
+                <h3>🔬 Yöntem ve Veri Notları</h3>
+                <ul class="cyber-bullets">
+                    <li><strong>Yöntem:</strong> Granger ve Toda-Yamamoto türü testler değişkenler arasındaki öncül-ardıl ilişkiyi sınar; asgari ücret artışının nedensel etkisini tek başına tanımlamaz.</li>
+                    <li><strong>Veri:</strong> Tartışma bölümünde ele alınan seri kırılmaları ve kayıt dışı istihdam, çalışmalar arasındaki farkların olası kaynaklarıdır. Bu farkın kesin açıklaması olduğu söylenemez.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel-card border-indigo" style="margin-top: 14px;">
+            <h3>🧭 Sonraki Araştırmalar İçin</h3>
+            <p>Yaş kırılımlı HİA mikro verisiyle genç işgücüne özgü tahminler yapılması; sektör ve bölge düzeyinde analizler; yapısal kırılmaların ve kayıt dışılığın modele açıkça dahil edilmesi; yöntem farkını ayrıştırmak için aynı veri setinde farklı yöntemlerin karşılaştırılması.</p>
+        </div>
+    </div>
+
+    <!-- ========================================== SLIDE 20: KAYNAKÇA ========================================== -->
+    <div class="slide" data-notes="Son slaytımız APA 7 formatındaki kaynakçadır. Türkiye ampirik literatüründen altı çalışma sentez matrisinde yer almaktadır; kuramsal ve yöntemsel kaynaklar ayrı gruplandırılmıştır. Dinlediğiniz için çok teşekkür ederim, sorularınızı memnuniyetle yanıtlarım.">
+        <div class="slide-nav-bar">
+            <h2>Kaynakça (APA 7)</h2>
+            <span class="badge-pill badge-indigo">Bölüm 6: Kaynakça</span>
+        </div>
+        <div class="grid-2">
+            <div class="panel-card border-indigo">
+                <div class="ref-group-label">Türkiye’ye İlişkin Ampirik Çalışmalar</div>
+                <ul class="refs-list">
+                    <li>Altunöz, U. (2016). Türkiye’de asgari ücret, işsizlik ve enflasyon arasındaki ilişkinin sınır testi yaklaşımıyla analizi. <em>Atatürk Üniversitesi İktisadi ve İdari Bilimler Dergisi, 30</em>(5), 1055-1063.</li>
+                    <li>Avcı, B. S. (2022). Türkiye’de genç işsizliğine etki eden faktörler. <em>Abant Sosyal Bilimler Dergisi, 22</em>(1), 33-46. <a href="https://doi.org/10.11616/asbi.954652" target="_blank" rel="noopener">https://doi.org/10.11616/asbi.954652</a></li>
+                    <li>Dağlıoğlu, S., &amp; Bakır, A. M. (2015). Türkiye’de asgari ücretin istihdam üzerindeki etkisinin sektörel panel regresyon modelleri ile incelenmesi. <em>Sosyal Güvence Dergisi</em>, (8), 35-68.</li>
+                    <li>Gümüş, İ., &amp; Akgüneş, A. O. (2020). Türkiye’de asgari ücretin makroekonomik değişkenlerle ilişkisi. <em>Yönetim ve Ekonomi Araştırmaları Dergisi, 18</em>(2), 110-127. <a href="https://doi.org/10.11611/yead.742670" target="_blank" rel="noopener">https://doi.org/10.11611/yead.742670</a></li>
+                    <li>Özer, M. O., &amp; Gülşen, M. İ. (2025). Türkiye’de asgari ücret ile enflasyon, işsizlik ve büyüme oranları arasındaki ilişki. <em>Erzurum Teknik Üniversitesi Sosyal Bilimler Enstitüsü Dergisi</em>, (21), 1-18. <a href="https://doi.org/10.29157/etusbed.1501796" target="_blank" rel="noopener">https://doi.org/10.29157/etusbed.1501796</a></li>
+                    <li>Tüleykan, H. (2019). Asgari ücret zammının enflasyon ve işsizlik üzerine etkilerinin değerlendirilmesi: Türkiye örneği (1988-2018). <em>Üçüncü Sektör Sosyal Ekonomi Dergisi, 54</em>(1), 205-221. <a href="https://doi.org/10.15659/3.sektor-sosyal-ekonomi.19.03.1085" target="_blank" rel="noopener">https://doi.org/10.15659/3.sektor-sosyal-ekonomi.19.03.1085</a></li>
+                </ul>
+            </div>
+            <div class="panel-card border-royal">
+                <div class="ref-group-label">Kuramsal ve Yöntemsel Kaynaklar</div>
+                <ul class="refs-list">
+                    <li>Card, D., &amp; Krueger, A. B. (1994). Minimum wages and employment: A case study of the fast-food industry in New Jersey and Pennsylvania. <em>The American Economic Review, 84</em>(4), 772-793.</li>
+                    <li>Hausman, J. A. (1978). Specification tests in econometrics. <em>Econometrica, 46</em>(6), 1251-1271.</li>
+                    <li>Mortensen, D. T., &amp; Pissarides, C. A. (1994). Job creation and job destruction in the theory of unemployment. <em>The Review of Economic Studies, 61</em>(3), 397-415.</li>
+                    <li>Pesaran, M. H., Shin, Y., &amp; Smith, R. J. (2001). Bounds testing approaches to the analysis of level relationships. <em>Journal of Applied Econometrics, 16</em>(3), 289-326.</li>
+                    <li>Stigler, G. J. (1946). The economics of minimum wage legislation. <em>The American Economic Review, 36</em>(3), 358-365.</li>
+                    <li>Toda, H. Y., &amp; Yamamoto, T. (1995). Statistical inference in vector autoregressions with possibly integrated processes. <em>Journal of Econometrics, 66</em>(1-2), 225-250.</li>
+                </ul>
+                <div class="ref-group-label" style="margin-top: 14px;">Veri Kaynakları</div>
+                <ul class="refs-list">
+                    <li>Türkiye İstatistik Kurumu. (2024). <em>Hanehalkı işgücü istatistikleri ve fiyat endeksleri bültenleri</em> [Veri seti]. <a href="https://data.tuik.gov.tr" target="_blank" rel="noopener">https://data.tuik.gov.tr</a></li>
+                    <li>Türkiye Cumhuriyet Merkez Bankası. (t.y.). <em>İmalat sanayi kapasite kullanım oranı</em> [Veri seti]. Elektronik Veri Dağıtım Sistemi (EVDS).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Speaker Notes Overlay Drawer -->
+    <div class="speaker-notes-box" id="notesDrawer">
+        <strong style="color: var(--accent-gold);">🎙️ Muhammed Ali Elban - Konuşma Notu:</strong> <span id="notesText"></span>
+    </div>
+
+    <!-- Bottom Deck Controls -->
+    <div class="deck-controls">
+        <div class="ctrl-group">
+            <button class="btn-ctrl" onclick="toggleNotes()">Konuşma Notları</button>
+            <button class="btn-ctrl" onclick="openSlideModal()">İçindekiler</button>
+        </div>
+        <div class="ctrl-center">
+            <button class="nav-arrow" onclick="prevSlide()" aria-label="Önceki slayt">←</button>
+            <div class="slide-counter-badge" id="slideBadge">Slayt 1 / 20</div>
+            <button class="nav-arrow nav-arrow-next" onclick="nextSlide()" aria-label="Sonraki slayt">→</button>
+        </div>
+        <div class="ctrl-group">
+            <button class="btn-ctrl" onclick="toggleTheme()" id="themeBtn">◐ Tema</button>
+            <button class="btn-ctrl" onclick="window.print()">PDF</button>
+        </div>
+    </div>
+
+    <!-- Slide Index Modal -->
+    <div class="slide-modal" id="slideModal">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: var(--text-heading); font-size: 16px;">📑 Sunum İçindekiler Tablosu (20 Slayt)</h3>
+            <button class="btn-ctrl" onclick="closeSlideModal()">✕ Kapat</button>
+        </div>
+        <div class="modal-grid">
+            <div class="modal-item" onclick="jumpToSlide(0)"><h5>1. Kapak</h5><span>Muhammed Ali Elban</span></div>
+            <div class="modal-item" onclick="jumpToSlide(1)"><h5>2. Giriş 1</h5><span>Asgari Ücretin Makro Rolü</span></div>
+            <div class="modal-item" onclick="jumpToSlide(2)"><h5>3. Giriş 2</h5><span>Genç İşgücünün Kırılganlığı</span></div>
+            <div class="modal-item" onclick="jumpToSlide(3)"><h5>4. Giriş 3</h5><span>İnteraktif 3 Teori Sekmesi</span></div>
+            <div class="modal-item" onclick="jumpToSlide(4)"><h5>5. Canlı Anket</h5><span>🗳️ Sınıf İçi Oylama</span></div>
+            <div class="modal-item" onclick="jumpToSlide(5)"><h5>6. Amaç 1</h5><span>Temel Amaç ve Gerekçe</span></div>
+            <div class="modal-item" onclick="jumpToSlide(6)"><h5>7. Amaç 2</h5><span>Kapsam, Sınırlar ve Hipotez</span></div>
+            <div class="modal-item" onclick="jumpToSlide(7)"><h5>8. Materyal 1</h5><span>TÜİK HİA Veri Tabanı</span></div>
+            <div class="modal-item" onclick="jumpToSlide(8)"><h5>9. Materyal 2</h5><span>TÜFE ile Reel Ücret Deflasyonu</span></div>
+            <div class="modal-item" onclick="jumpToSlide(9)"><h5>10. Materyal 3</h5><span>Sanayi Üretimi & Büyüme</span></div>
+            <div class="modal-item" onclick="jumpToSlide(10)"><h5>11. Yöntem 1</h5><span>ARDL Sınır Testi Yaklaşımı</span></div>
+            <div class="modal-item" onclick="jumpToSlide(11)"><h5>12. Yöntem 2</h5><span>Toda-Yamamoto Nedensellik</span></div>
+            <div class="modal-item" onclick="jumpToSlide(12)"><h5>13. Yöntem 3</h5><span>Sektörel Panel Regresyon</span></div>
+            <div class="modal-item" onclick="jumpToSlide(13)"><h5>14. Bulgular 1</h5><span>40 Makalenin Dağılım Çubukları</span></div>
+            <div class="modal-item" onclick="jumpToSlide(14)"><h5>15. Bulgular 2</h5><span>İnteraktif Filtreli Matris</span></div>
+            <div class="modal-item" onclick="jumpToSlide(15)"><h5>16. Tartışma 1</h5><span>Aktarım Mekanizması Şeması</span></div>
+            <div class="modal-item" onclick="jumpToSlide(16)"><h5>17. Tartışma 2</h5><span>TÜİK Kırılmaları & Kayıt Dışılık</span></div>
+            <div class="modal-item" onclick="jumpToSlide(17)"><h5>18. Sonuç 1</h5><span>Literatür Ne Söylüyor?</span></div>
+            <div class="modal-item" onclick="jumpToSlide(18)"><h5>19. Sonuç 2</h5><span>Değerlendirme ve Sınırlılıklar</span></div>
+            <div class="modal-item" onclick="jumpToSlide(19)"><h5>20. Kaynakça</h5><span>APA 7 – Ayrıntılı</span></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const badge = document.getElementById('slideBadge');
+    const progressFill = document.getElementById('progressFill');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesText = document.getElementById('notesText');
+    const slideModal = document.getElementById('slideModal');
+
+    function updatePresentationDeck() {
+        slides.forEach((s, idx) => {
+            s.classList.toggle('active', idx === currentSlide);
+        });
+        badge.textContent = `Slayt ${currentSlide + 1} / ${totalSlides}`;
+        progressFill.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+        notesText.textContent = slides[currentSlide].getAttribute('data-notes') || 'Bu slayt için konuşma metni bulunmamaktadır.';
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updatePresentationDeck();
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            updatePresentationDeck();
+        }
+    }
+
+    function toggleNotes() { notesDrawer.classList.toggle('open'); }
+    function openSlideModal() { slideModal.classList.add('open'); }
+    function closeSlideModal() { slideModal.classList.remove('open'); }
+
+    function jumpToSlide(idx) {
+        currentSlide = idx;
+        updatePresentationDeck();
+        closeSlideModal();
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('theme-light');
+        const isLight = document.body.classList.contains('theme-light');
+        document.getElementById('themeBtn').textContent = isLight ? '◑ Koyu tema' : '◐ Açık tema';
+    }
+
+    function switchTheoryTab(tabId) {
+        const tabs = document.querySelectorAll('.tab-content');
+        const btns = document.querySelectorAll('.tab-btn');
+        tabs.forEach(t => t.classList.remove('active'));
+        btns.forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    function filterMatrix(category) {
+        const rows = document.querySelectorAll('#matrixTable tbody tr');
+        const btns = document.querySelectorAll('.filter-btn');
+        btns.forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+
+        rows.forEach(row => {
+            if (category === 'all') {
+                row.style.display = '';
+            } else if (category === 'neoclassic') {
+                row.style.display = row.classList.contains('row-neoclassic') ? '' : 'none';
+            } else if (category === 'neutral') {
+                row.style.display = row.classList.contains('row-neutral') ? '' : 'none';
+            } else if (category === 'positive') {
+                row.style.display = row.classList.contains('row-positive') ? '' : 'none';
+            }
+        });
+    }
+
+    /* Live Interactive Poll Voting Logic */
+    let votes = [18, 14, 8];
+    function voteOption(choice) {
+        votes[choice - 1]++;
+        const total = votes[0] + votes[1] + votes[2];
+        const p1 = Math.round((votes[0] / total) * 100);
+        const p2 = Math.round((votes[1] / total) * 100);
+        const p3 = Math.round((votes[2] / total) * 100);
+
+        document.getElementById('bar1').style.width = p1 + '%';
+        document.getElementById('bar2').style.width = p2 + '%';
+        document.getElementById('bar3').style.width = p3 + '%';
+
+        document.getElementById('vote1Text').textContent = `%${p1} (${votes[0]} Oy)`;
+        document.getElementById('vote2Text').textContent = `%${p2} (${votes[1]} Oy)`;
+        document.getElementById('vote3Text').textContent = `%${p3} (${votes[2]} Oy)`;
+    }
+
+    /* Keyboard navigation */
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key.toLowerCase() === 'n') {
+            toggleNotes();
+        } else if (e.key.toLowerCase() === 'm') {
+            if (slideModal.classList.contains('open')) closeSlideModal();
+            else openSlideModal();
+        } else if (e.key.toLowerCase() === 't') {
+            toggleTheme();
+        } else if (e.key === 'Escape') {
+            closeSlideModal();
+        }
+    });
+
+    updatePresentationDeck();
+</script>
+
+</body>
+</html>
